@@ -62,3 +62,8 @@ typings/
 
 # Mac Cruft
 .DS_Store
+
+yarn.lock
+**/*.db3
+build/
+.vscode/
