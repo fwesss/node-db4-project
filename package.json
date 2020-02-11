@@ -4,7 +4,8 @@
   "repository": "https://github.com/fwesss/node-db4-project.git",
   "license": "MIT",
   "author": "Westley Feller <feller.westley@gmail.com>",
-  "main": "./build/index.js",
+  "main": "./build/index",
+  "typings": "./build/index",
   "scripts": {
     "check-format": "yarn run prettier --ignore-path .gitignore --list-different",
     "check-types": "tsc --watch",
@@ -38,6 +39,7 @@
     "folktale": "^2.3.2",
     "fp-ts": "^2.4.3",
     "knex": "^0.20.1",
+    "knex-cleaner": "^1.3.0",
     "morgan": "^1.9.1",
     "sqlite3": "^4.1.0",
     "swagger-ui-express": "^4.1.3"
