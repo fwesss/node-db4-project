@@ -5,7 +5,21 @@ export const up = (knex: Knex): SchemaBuilder =>
     .createTable('recipes', table => {
       table.increments()
       table.string('name').notNullable()
-      table.text('instructions').notNullable()
+    })
+    .createTable('instructions', table => {
+      table.increments()
+      table
+        .integer('recipe_id')
+        .unsigned()
+        .notNullable()
+        .references('recipes.id')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
+      table
+        .integer('step')
+        .unsigned()
+        .notNullable()
+      table.string('instruction').notNullable()
     })
     .createTable('ingredients', table => {
       table.increments()
@@ -31,6 +45,7 @@ export const up = (knex: Knex): SchemaBuilder =>
 
 export const down = (knex: Knex): SchemaBuilder =>
   knex.schema
-    .dropSchemaIfExists('recipe_ingredients')
-    .dropSchemaIfExists('ingredients')
-    .dropSchemaIfExists('recipes')
+    .dropTableIfExists('recipe_ingredients')
+    .dropTableIfExists('ingredients')
+    .dropTableIfExists('instructions')
+    .dropTableIfExists('recipes')

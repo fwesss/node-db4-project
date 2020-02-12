@@ -6,7 +6,6 @@ import express, {
   ErrorRequestHandler,
 } from 'express'
 import morgan from 'morgan'
-// import carsRouter from './resources/cars/cars.router'
 
 const server = express()
 
@@ -26,8 +25,6 @@ const jsonSyntaxErrorHandler = (
 server.use(morgan('dev'))
 server.use(json())
 server.use(jsonSyntaxErrorHandler)
-
-// server.use('/api/cars', carsRouter)
 
 server.get('/', (_req, res) => res.send(`<h1>Node DB4 Project</h1>`))
 
