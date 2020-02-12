@@ -7,6 +7,7 @@ import express, {
 } from 'express'
 import morgan from 'morgan'
 import recipesRouter from './resources/recipes/recipes.router'
+import ingredientsRouter from './resources/ingredients/ingredients.router'
 
 const server = express()
 
@@ -28,6 +29,7 @@ server.use(json())
 server.use(jsonSyntaxErrorHandler)
 
 server.use('/api/recipes', recipesRouter)
+server.use('/api/ingredients', ingredientsRouter)
 
 server.get('/', (_req, res) => res.send(`<h1>Node DB4 Project</h1>`))
 
