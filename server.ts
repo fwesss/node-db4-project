@@ -6,6 +6,7 @@ import express, {
   ErrorRequestHandler,
 } from 'express'
 import morgan from 'morgan'
+import recipesRouter from './resources/recipes/recipes.router'
 
 const server = express()
 
@@ -25,6 +26,8 @@ const jsonSyntaxErrorHandler = (
 server.use(morgan('dev'))
 server.use(json())
 server.use(jsonSyntaxErrorHandler)
+
+server.use('/api/recipes', recipesRouter)
 
 server.get('/', (_req, res) => res.send(`<h1>Node DB4 Project</h1>`))
 

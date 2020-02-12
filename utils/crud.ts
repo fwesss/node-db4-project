@@ -1,18 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express'
 import { QueryBuilder } from 'knex'
 
-type Id = number | string
+export type Id = number | string
 
 type Model = {
   findAll: () => QueryBuilder
   findById: (id: Id) => QueryBuilder
-  insert: (item: {
-    [key: string]: number | string | boolean
-  }) => Promise<QueryBuilder>
-  update: (
-    id: Id,
-    item: { [key: string]: number | string | boolean }
-  ) => Promise<QueryBuilder | null>
+  insert: (item: { [key: string]: any }) => Promise<QueryBuilder>
+  update: (id: Id, item: { [key: string]: any }) => Promise<QueryBuilder | null>
   remove: (id: Id) => QueryBuilder
 }
 
