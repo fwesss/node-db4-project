@@ -5,6 +5,11 @@ type Id = number | string
 
 const findRecipes = (): QueryBuilder => db('recipes')
 
+export const findRecipeById = (id: Id): QueryBuilder =>
+  db('recipes')
+    .where({ id })
+    .first()
+
 const findShoppingList = (recipeId: Id): QueryBuilder =>
   db('recipes')
     .join('recipe_ingredients', 'recipes.id', 'recipe_ingredients.recipe_id')
