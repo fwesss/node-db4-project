@@ -1,10 +1,7 @@
 import { QueryBuilder } from 'knex'
 import db from '../../data/dbConfig'
-import { Id } from '../../utils/crud'
 
-export type Recipe = {
-  name: string
-}
+type Id = number | string
 
 const findRecipes = (): QueryBuilder => db('recipes')
 
@@ -15,7 +12,15 @@ const findShoppingList = (recipeId: Id): QueryBuilder =>
     .select('ingredients.name', 'ingredients.quantity')
     .where({ 'recipes.id': recipeId })
 
+const findInstructions = (recipeId: Id): QueryBuilder =>
+  db('recipes')
+    .join('instructions', 'recipes.id', 'instructions.recipe_id')
+    .select('instructions.step', 'instructions.instruction')
+    .where({ 'recipes.id': recipeId })
+    .orderBy('instructions.step')
+
 export default {
   findRecipes,
   findShoppingList,
+  findInstructions,
 }

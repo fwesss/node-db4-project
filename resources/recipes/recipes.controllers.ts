@@ -19,4 +19,13 @@ const getShoppingList = async (req: Request, res: Response): Promise<void> => {
   }
 }
 
-export default { getRecipes, getShoppingList }
+const getInstructions = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const instructions = await model.findInstructions(req.params.id)
+    res.status(200).json(instructions)
+  } catch (error) {
+    res.status(500).json({ message: `Operation failed`, error })
+  }
+}
+
+export default { getRecipes, getShoppingList, getInstructions }
