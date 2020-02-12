@@ -28,4 +28,8 @@ const getInstructions = async (req: Request, res: Response): Promise<void> => {
   }
 }
 
-export default { getRecipes, getShoppingList, getInstructions }
+export default {
+  getRecipes,
+  getShoppingList,
+  getInstructions,
+}
